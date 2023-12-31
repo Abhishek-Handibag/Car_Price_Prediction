@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futuristic Predictive Analysis</title>
+    
+    <style>
+        body {
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            border-radius: 15px;
+            border: 2px solid #fff;
+            padding: 20px;
+            margin: 20px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        h2, h3 {
+            color: #18ffff;
+        }
+
+        input, select, button {
+            border: none;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 8px;
+            font-size: 16px;
+            width: 200px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        input:hover, select:hover, button:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        select {
+            width: 220px;
+        }
+
+        button {
+            cursor: pointer;
+            background-color: #4caf50;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #sub {
+            width: 250px;
+        }
+
+        #fuel, #research, #resea {
+            width: 220px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="box">
+        <form action="{{ url_for('predict')}}" method="post">
+            <h2>Predictive Analysis</h2>
+            <h3>Year</h3>
+            <input id="first" name="Year" type="number">
+            <h3>Showroom Price (In lakhs)</h3><br><input id="second" name="Present_Price" required="required">
+            <h3>Kilometers Driven</h3><input id="third" name="Kms_Driven" required="required">
+            <h3>Previous Owners (0 or 1 or 3)</h3><br><input id="fourth" name="Owner" required="required">
+            <h3>Fuel Type</h3><br><select name="Fuel_Type_Petrol" id="fuel" required="required">
+                <option value="Petrol">Petrol</option>
+                <option value="Diesel">Diesel</option>
+                <option value="CNG">CNG</option>
+            </select>
+            <h3>Seller Type</h3><br><select name="Seller_Type_Individual" id="resea" required="required">
+                <option value="Dealer">Dealer</option>
+                <option value="Individual">Individual</option>
+            </select>
+            <h3>Transmission Type</h3><br><select name="Transmission_Mannual" id="research" required="required">
+                <option value="Mannual">Manual Car</option>
+                <option value="Automatic">Automatic Car</option>
+            </select>
+            <br><br><button id="sub" type="submit">Calculate Selling Price</button>
+            <br>
+        </form>
+
+        <br><br><h3>{{ prediction_text }}</h3>
+    </div>
+</body>
+
+</html>
